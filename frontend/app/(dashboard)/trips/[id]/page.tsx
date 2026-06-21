@@ -67,7 +67,7 @@ export default function TripDetailsPage({ params }: { params: Promise<{ id: stri
     const fetchTrip = async () => {
       try {
         const token = localStorage.getItem("trao_token");
-        const res = await fetch(`http://localhost:5000/api/trips/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch trip details");
@@ -90,7 +90,7 @@ export default function TripDetailsPage({ params }: { params: Promise<{ id: stri
   const refetchTrip = async () => {
     try {
       const token = localStorage.getItem("trao_token");
-      const res = await fetch(`http://localhost:5000/api/trips/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (res.ok) {
@@ -113,7 +113,7 @@ export default function TripDetailsPage({ params }: { params: Promise<{ id: stri
         setTrip(newTrip);
       }
 
-      await fetch(`http://localhost:5000/api/trips/${id}/packing-list`, {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}/packing-list`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -134,7 +134,7 @@ export default function TripDetailsPage({ params }: { params: Promise<{ id: stri
     setRegeneratingDay(dayNumber);
     try {
       const token = localStorage.getItem("trao_token");
-      const res = await fetch(`http://localhost:5000/api/trips/${id}/regenerate-day`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}/regenerate-day`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -160,7 +160,7 @@ export default function TripDetailsPage({ params }: { params: Promise<{ id: stri
     
     try {
       const token = localStorage.getItem("trao_token");
-      const res = await fetch(`http://localhost:5000/api/trips/${id}/activity/${activityIndex}?dayNumber=${dayNumber}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}/activity/${activityIndex}?dayNumber=${dayNumber}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -178,7 +178,7 @@ export default function TripDetailsPage({ params }: { params: Promise<{ id: stri
     if (!confirm("Are you sure you want to delete this trip?")) return;
     try {
       const token = localStorage.getItem("trao_token");
-      const res = await fetch(`http://localhost:5000/api/trips/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });

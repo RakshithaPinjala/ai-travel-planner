@@ -22,7 +22,7 @@ export default function DashboardPage() {
     const fetchTrips = async () => {
       try {
         const token = localStorage.getItem("trao_token");
-        const res = await fetch("http://localhost:5000/api/trips", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -55,7 +55,7 @@ export default function DashboardPage() {
 
     try {
       const token = localStorage.getItem("trao_token");
-      const res = await fetch(`http://localhost:5000/api/trips/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

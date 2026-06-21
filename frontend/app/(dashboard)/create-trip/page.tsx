@@ -71,7 +71,7 @@ export default function CreateTripPage() {
         interests: data.interests.split(",").map((i: string) => i.trim()).filter(Boolean),
       };
 
-      const res = await fetch("http://localhost:5000/api/trips", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"}/api/trips`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
