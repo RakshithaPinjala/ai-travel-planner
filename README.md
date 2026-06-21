@@ -2,6 +2,8 @@
 
 ![Trao AI](https://via.placeholder.com/1200x600.png?text=Trao+AI+Travel+Planner)
 
+This is the link for the website -> https://ai-travel-planner-nsure.vercel.app/
+
 Trao AI is a production-ready SaaS application that generates personalized travel itineraries, estimated budgets, and weather-aware packing lists using Google's Gemini 2.5 Flash API.
 
 ## 🚀 Features
