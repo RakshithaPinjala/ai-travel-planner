@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these base styles back for backward compatibility with Shadcn/UI components.
+  Feel free to remove this if you want to use the Tailwind default.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+@layer base {
+  :root {
+    /* Background: #1A1A2E */
+    --background: 240 27.8% 14.1%;
+    /* Text: #F5F5F5 */
+    --foreground: 0 0% 96.1%;
+
+    /* Primary: #E94560 */
+    --primary: 350.1 79.2% 59.2%;
+    --primary-foreground: 0 0% 96.1%;
+
+    /* Secondary: #FFD166 */
+    --secondary: 42 100% 70%;
+    --secondary-foreground: 240 27.8% 14.1%;
+
+    /* Accent: #E94560 (Reusing primary for gradient) */
+    --accent: 350.1 79.2% 59.2%;
+    --accent-foreground: 0 0% 96.1%;
+
+    /* Surface: #16213E */
+    --card: 223.5 47.6% 16.5%;
+    --card-foreground: 0 0% 96.1%;
+    --popover: 223.5 47.6% 16.5%;
+    --popover-foreground: 0 0% 96.1%;
+    --muted: 223.5 47.6% 16.5%;
+    --muted-foreground: 0 0% 70%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 223.5 47.6% 30%;
+    --input: 223.5 47.6% 30%;
+    --ring: 350.1 79.2% 59.2%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Background: #1A1A2E */
+    --background: 240 27.8% 14.1%;
+    /* Text: #F5F5F5 */
+    --foreground: 0 0% 96.1%;
+
+    /* Primary: #E94560 */
+    --primary: 350.1 79.2% 59.2%;
+    --primary-foreground: 0 0% 96.1%;
+
+    /* Secondary: #FFD166 */
+    --secondary: 42 100% 70%;
+    --secondary-foreground: 240 27.8% 14.1%;
+
+    /* Accent: #E94560 (Reusing primary for gradient) */
+    --accent: 350.1 79.2% 59.2%;
+    --accent-foreground: 0 0% 96.1%;
+
+    /* Surface: #16213E */
+    --card: 223.5 47.6% 16.5%;
+    --card-foreground: 0 0% 96.1%;
+    --popover: 223.5 47.6% 16.5%;
+    --popover-foreground: 0 0% 96.1%;
+    --muted: 223.5 47.6% 16.5%;
+    --muted-foreground: 0 0% 70%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 223.5 47.6% 30%;
+    --input: 223.5 47.6% 30%;
+    --ring: 350.1 79.2% 59.2%;
+  }
+}
+
+@layer utilities {
+  .bg-paper {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .bg-topo-map {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.15' fill-rule='evenodd'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 400px 400px;
+    animation: pan-map 60s linear infinite;
+  }
+
+  @keyframes pan-map {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -400px -400px;
+    }
+  }
+
+  .glass-card {
+    @apply bg-card/40 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+  }
+
+  .glass-panel {
+    @apply bg-background/60 backdrop-blur-2xl border-white/5 shadow-2xl;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom Gradients for AI Globe Theme */
+.bg-ai-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+}
+.text-ai-gradient {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)), hsl(var(--accent)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
